@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px system-ui, sans-serif; width: 420px; margin: 12px; color: #222; }
+  details { margin-top: 14px; border-top: 1px solid #ddd; padding-top: 8px; }
+  summary { font-weight: 600; cursor: pointer; }
+  .nom { display: grid; grid-template-columns: 1.3fr 1.3fr 0.5fr 1fr auto; gap: 4px; margin-top: 4px; align-items: center; }
+  .nom.head { font-size: 11px; color: #666; font-weight: 600; }
+  .nom input, .nom select { width: 100%; box-sizing: border-box; padding: 4px; font: inherit; }
+  .nom button { padding: 2px 7px; }
+  #nomMsg { margin-top: 6px; min-height: 1em; }
+  h1 { font-size: 15px; margin: 0 0 8px; }
+  label { display: block; margin: 10px 0 3px; font-weight: 600; }
+  input[type=text], input[type=number] { width: 100%; box-sizing: border-box; padding: 5px; }
+  .hint { color: #666; font-size: 11px; margin-top: 2px; }
+  .status { background: #f4f4f4; border-radius: 6px; padding: 8px; margin-bottom: 8px; }
+  .ok { color: #1a7f37; } .err { color: #b42318; }
+  .row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  button { padding: 5px 9px; cursor: pointer; }
+  #msg { margin-top: 6px; min-height: 1em; }
+</style>
+</head>
+<body>
+<h1>Sabarimala Virtual-Q Watcher</h1>
+<div class="status" id="status">No check yet.</div>
+
+<label><input type="checkbox" id="enabled"> Watching</label>
+
+<label for="targets">Dates to watch</label>
+<input type="text" id="targets" placeholder="2026-12-24, 2027-01-10..2027-01-14">
+<div class="hint">Comma-separated dates, or ranges with "..". Leave empty to watch every date.</div>
+
+<label for="minTickets">Tickets needed</label>
+<input type="number" id="minTickets" min="1" max="10" step="1">
+<div class="hint">Alert only when one slot on a route has at least this many tickets left.</div>
+
+<label for="interval">Check every (minutes)</label>
+<input type="number" id="interval" min="2" step="1">
+<div class="hint">Minimum 2, to keep load on the portal gentle.</div>
+
+<label for="ntfy">Phone alerts: ntfy topic (optional)</label>
+<input type="text" id="ntfy" placeholder="e.g. swamy-vq-7f3k9q">
+<div class="hint">Install the free ntfy app, subscribe to a hard-to-guess topic name, and paste it here.</div>
+
+<div class="row">
+  <button id="save">Save</button>
+  <button id="check">Check now</button>
+  <button id="test">Send test alert</button>
+</div>
+<div id="msg"></div>
+
+<details id="nomSection">
+  <summary>Pilgrims &amp; nominees (autofill on the booking page)</summary>
+  <div class="hint">One line per pilgrim in this booking (max 5). Type the pilgrim's name as shown in the portal's Pilgrim List (case and dots don't matter). The extension ticks these pilgrims in Select Pilgrim and fills their nominee rows. You still choose the slot, check everything and submit yourself. Stored only in this browser.</div>
+  <label style="font-weight:normal"><input type="checkbox" id="pilEnabled"> Select these pilgrims automatically</label>
+  <label style="font-weight:normal;margin-top:2px"><input type="checkbox" id="nomEnabled"> Autofill nominee details</label>
+  <label style="font-weight:normal;margin-top:2px"><input type="checkbox" id="contribNo"> Set Pilgrim Relief fund and Clean Sabarimala contributions to No</label>
+  <div class="nom head"><span>Pilgrim (as on portal)</span><span>Nominee name</span><span>Age</span><span>Relationship</span><span></span></div>
+  <div id="nomRows"></div>
+  <div class="row">
+    <button id="nomAdd">+ Add pilgrim</button>
+    <button id="nomSave">Save nominees</button>
+  </div>
+  <div id="nomMsg"></div>
+</details>
+
+<script src="nominee.js"></script>
+<script type="module" src="popup.js"></script>
+</body>
+</html>

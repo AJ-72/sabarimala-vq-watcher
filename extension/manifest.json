@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Sabarimala Virtual-Q Watcher",
+  "version": "0.6.1",
+  "description": "Checks the public Virtual-Q availability calendar every few minutes and alerts you when your dates open. It never logs in or books.",
+  "permissions": ["alarms", "storage", "notifications"],
+  "host_permissions": ["https://sabarimalaonline.org/*", "https://ntfy.sh/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "content_scripts": [{ "matches": ["https://sabarimalaonline.org/*"], "js": ["nominee.js", "content.js"], "run_at": "document_idle" }],
+  "action": { "default_popup": "popup.html", "default_title": "Virtual-Q Watcher", "default_icon": "icon.png" },
+  "icons": { "128": "icon.png" }
+}
