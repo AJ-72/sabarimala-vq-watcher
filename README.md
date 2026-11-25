@@ -87,18 +87,36 @@ Ticket counts change within a minute, so an opening can go before you get there.
 
 - Your pilgrim names and nominee details stay in this browser (`chrome.storage.local`). They
   are never sent anywhere.
+- Availability checks go to the portal without your login cookies and carry no personal data.
 - Phone alerts send only dates, routes, slot times and ticket counts to ntfy.sh, under the
   topic name you chose. Anyone who knows the topic can read them, so pick one that's hard to
   guess.
 - The extension never stores your portal password, OTP or payment details.
 
-## Responsible use
+Full details: [PRIVACY.md](PRIVACY.md).
 
-- Keep the check interval at 2 minutes or more. The extension enforces this minimum.
-- Use it for your own group's booking. TDB states it has not authorised any agents or
-  middlemen to book on behalf of pilgrims.
-- The portal blocks scripted access from outside a browser. This extension works inside your
-  own Chrome as a normal visitor would; please don't try to get around those protections.
+## Fair use
+
+This tool is for pilgrims booking **their own group's** darshan. Please use it in that spirit.
+
+- **Virtual-Q coupons are free.** The portal's own guidelines say no money should be paid to
+  anybody to get a coupon, and that TDB has not authorised any agents or middlemen. Don't use
+  this extension to book coupons for payment. If anyone asks you for money for a Virtual-Q
+  coupon, report it to TDB at **grievance.virtualqtdb@gmail.com**.
+- **Stay within the portal's limits.** One account can hold at most 10 active Virtual-Q
+  coupons, and a booking can include up to 5 pilgrims. The extension doesn't try to get
+  around either.
+- **Be gentle with the portal.** It checks at most once every 2 minutes. This minimum is
+  built in, and requests that are turned down or fail aren't retried in a burst. Please don't
+  change the code to check faster; thousands of pilgrims depend on the same site.
+- **Book by hand.** You log in, enter your own OTP and CAPTCHA, and press Add to Wishlist and
+  Submit yourself. The extension never does those steps, and changes that make it do so, or
+  that get around the portal's protections, aren't welcome in this project.
+- **Cancel what you won't use.** If your plans change, cancel the coupon on the portal so
+  another pilgrim can have the slot.
+
+If the Travancore Devaswom Board would prefer this tool not to exist, or would like it to work
+differently, please open an issue and it will be changed or taken down.
 
 ## How it works
 
@@ -155,4 +173,4 @@ responses, the parsers fail with a clear message rather than alerting wrongly.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). See also the [privacy policy](PRIVACY.md).
